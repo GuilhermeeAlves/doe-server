@@ -21,7 +21,6 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usuarioRepo;
 	
-	
 	@RequestMapping(value = "{login}/{senha}", method = RequestMethod.POST)
 	public ResponseEntity<Usuario> autentica(@PathVariable String login, @PathVariable String senha) {
 

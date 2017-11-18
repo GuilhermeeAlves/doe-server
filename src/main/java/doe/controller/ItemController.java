@@ -22,9 +22,7 @@ import doe.repository.ItemRepository;
 public class ItemController {
 	@Autowired
 	private ItemRepository itemRepository;
-
-    public static final Logger logger = LoggerFactory.getLogger(ItemController.class);
-      
+	
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<List<Item>> buscarTodos() {
     	List<Item> itens = itemRepository.findAll();

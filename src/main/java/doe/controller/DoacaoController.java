@@ -27,10 +27,7 @@ public class DoacaoController {
 	@Autowired
 	private DoacaoRepository doacaoRepository;
 	@Autowired
-	private UsuarioRepository usuarioRepository;
-	
-    public static final Logger logger = LoggerFactory.getLogger(DoacaoController.class);
-    
+	private UsuarioRepository usuarioRepository;    
  
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ResponseEntity<List<Doacao>> buscarTodos() {
