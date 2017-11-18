@@ -1,66 +1,69 @@
 package doe.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-/**
- * Created by REMOR on 09/08/2016.
- */
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
+@Table(name="Usuario")
 public class Usuario implements Serializable {
-    private String nome;
-    @Column(unique=true)
+    
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="IdUsuario")
+	private long idUsuario;
+    
+	@Column(name="Login", unique=true)
     private String login;
+	
+	@Column(name="Senha")
     private String senha;
-
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long id;
+    
+    @JsonIgnore
+	@OneToMany(mappedBy="usuario")
+	private List<Doacao> doacoes;
 
     public Usuario() {
     }
 
-    public Usuario(long id, String nome, String login, String senha) {
-        this.id = id;
-    	this.nome = nome;
-        this.login = login;
-        this.senha = senha;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
 	public long getId() {
-		return id;
+		return idUsuario;
 	}
 
 	public void setId(long id) {
-		this.id = id;
-	}    
+		this.idUsuario = id;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public List<Doacao> getDoacoes() {
+		return doacoes;
+	}
+
+	public void setDoacoes(List<Doacao> doacoes) {
+		this.doacoes = doacoes;
+	}
 }
